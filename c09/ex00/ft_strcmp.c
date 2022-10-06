@@ -1,53 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_range.c                                         :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbrisson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 18:59:25 by fbrisson          #+#    #+#             */
-/*   Updated: 2022/10/04 11:24:02 by fbrisson         ###   ########.fr       */
+/*   Created: 2022/10/05 10:53:04 by fbrisson          #+#    #+#             */
+/*   Updated: 2022/10/05 10:59:03 by fbrisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-int	*ft_range(int min, int max)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
-	int	*tab;
 
-	if (max <= min)
-		return (NULL);
-	tab = malloc(sizeof(*tab) * (max - min));
-	if (tab == NULL)
-		return (0);
 	i = 0;
-	while (min < max)
-		tab[i++] = min++;
-	return (tab);
+	while (s1[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }
 
 /*
 
 #include <stdio.h>
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	int	*tab;
-	int	min;
-	int	max;
-	int	i;
+	int	a;
+	(void)	ac;
 
-	min = 1;
-	max = 25;
-	i = 0;
-	tab = ft_range(min, max);
-	while (i < (max - min))
-	{
-		printf("%d, ", tab[i]);
-		i++;
-	}
-	free(tab);
+	a = ft_strcmp(av[1], av[2]);
+	printf("%d", a);
 	return (0);
 }*/

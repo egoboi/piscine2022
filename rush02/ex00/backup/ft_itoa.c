@@ -1,53 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_range.c                                         :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbrisson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 18:59:25 by fbrisson          #+#    #+#             */
-/*   Updated: 2022/10/04 11:24:02 by fbrisson         ###   ########.fr       */
+/*   Created: 2022/10/02 18:28:54 by fbrisson          #+#    #+#             */
+/*   Updated: 2022/10/02 18:51:24 by fbrisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int	*ft_range(int min, int max)
+char	*ft_itoa(int num, char *str)
 {
-	int	i;
-	int	*tab;
+	long int	i;
+	long int	len;
+	long int	div;
+	long int	mod;
+	long int	lnum;
 
-	if (max <= min)
-		return (NULL);
-	tab = malloc(sizeof(*tab) * (max - min));
-	if (tab == NULL)
-		return (0);
+	lnum = num;
+	while (lnum != 0)
+	{
+		len++;
+		lnum = lnum / 10;
+	}
 	i = 0;
-	while (min < max)
-		tab[i++] = min++;
-	return (tab);
+	while (i < len)
+	{
+		mod = lnum % 10;
+		div = lnum / 10;
+		str[len - (i + 1)] = mod + 48;
+		i++;
+	}
+	str[len] = '\0';
+	return (str);
 }
-
-/*
 
 #include <stdio.h>
 
 int	main(void)
 {
-	int	*tab;
-	int	min;
-	int	max;
 	int	i;
+	char	buff[20];
 
-	min = 1;
-	max = 25;
-	i = 0;
-	tab = ft_range(min, max);
-	while (i < (max - min))
-	{
-		printf("%d, ", tab[i]);
-		i++;
-	}
-	free(tab);
+	i = 15;
+	ft_itoa(i, buff, 10);
+	printf("%s\n", buff);
 	return (0);
-}*/
+}

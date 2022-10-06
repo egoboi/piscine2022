@@ -1,53 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_range.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbrisson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 18:59:25 by fbrisson          #+#    #+#             */
-/*   Updated: 2022/10/04 11:24:02 by fbrisson         ###   ########.fr       */
+/*   Created: 2022/10/01 12:43:21 by fbrisson          #+#    #+#             */
+/*   Updated: 2022/10/01 16:07:52 by obouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-int	*ft_range(int min, int max)
+unsigned int	ft_atoi(char *str)
 {
 	int	i;
-	int	*tab;
+	int	resultat;
 
-	if (max <= min)
-		return (NULL);
-	tab = malloc(sizeof(*tab) * (max - min));
-	if (tab == NULL)
-		return (0);
+	resultat = 0;
 	i = 0;
-	while (min < max)
-		tab[i++] = min++;
-	return (tab);
+	while (str[i] >= '0' && str[i] <= '9' && str[i] != '\0')
+	{
+		resultat = (resultat * 10) + (str[i] - 48);
+		i++;
+	}
+	return (resultat);
 }
 
 /*
-
 #include <stdio.h>
 
 int	main(void)
 {
-	int	*tab;
-	int	min;
-	int	max;
-	int	i;
+	char	str[] = "12345";
+	int	a;
 
-	min = 1;
-	max = 25;
-	i = 0;
-	tab = ft_range(min, max);
-	while (i < (max - min))
-	{
-		printf("%d, ", tab[i]);
-		i++;
-	}
-	free(tab);
+	a = ft_atoi(str);
+	printf("%d\n", a);
 	return (0);
-}*/
+}
+*/
